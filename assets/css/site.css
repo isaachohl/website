@@ -1,0 +1,404 @@
+/* Isaac Hohl — responsive rebuild merging wireframe 1a (390px) and 1g (1280px).
+   Mobile-first: base rules are 1a, the 1024px block is 1g. */
+
+:root{
+  --paper:#fafafa;
+  --ink:#2a2722;
+  --muted:#666666;
+  --hair:#eeeeee;
+  --edge:#4a4640;
+  --dim:#9f9f9f;
+  --sans:Archivo,system-ui,sans-serif;
+  --serif:'Instrument Serif',Georgia,serif;
+  --display:Anton,Impact,sans-serif;
+  --mono:ui-monospace,Menlo,Consolas,monospace;
+  --gut:20px;
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+
+html{-webkit-text-size-adjust:100%}
+
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  overflow-x:hidden;
+  display:flex;
+  flex-direction:column;
+  min-height:100vh;
+}
+/* keeps the footer at the bottom on short pages (About, Contact) */
+main{flex:1 0 auto}
+.foot{flex:none}
+
+body.is-locked{overflow:hidden}
+
+img{max-width:100%}
+
+:focus-visible{outline:2px solid currentColor;outline-offset:3px;border-radius:4px}
+
+.skip{
+  position:absolute;left:-9999px;top:0;z-index:200;
+  background:var(--ink);color:var(--paper);
+  font:700 12px/1 var(--sans);text-transform:uppercase;letter-spacing:-0.12px;
+  padding:12px 16px;border-radius:0 0 12px 0;text-decoration:none;
+}
+.skip:focus{left:0}
+
+.vh{
+  position:absolute;width:1px;height:1px;margin:-1px;padding:0;
+  overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;
+}
+
+/* Only one of these renders per breakpoint — the wireframes use different
+   headings for the same section on phone vs desktop. */
+.m-only{display:block}
+.d-only{display:none}
+.br-m{display:inline}
+
+/* ---------- shared control shapes ---------- */
+
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  font:700 12px/1 var(--sans);letter-spacing:-0.12px;text-transform:uppercase;
+  color:var(--ink);background:none;border:1px solid var(--ink);border-radius:12px;
+  padding:9px 13px;cursor:pointer;text-decoration:none;
+}
+.btn--light{color:var(--paper);border-color:var(--paper)}
+.btn--plain{font-weight:400}
+
+.icon{
+  display:flex;align-items:center;justify-content:center;
+  width:46px;height:46px;border:1px solid var(--ink);border-radius:12px;
+  text-decoration:none;color:var(--ink);flex:none;
+}
+.icon--light{color:var(--paper);border-color:var(--paper)}
+.icon span{font:400 20px/1 var(--sans)}
+
+.ig{display:block;position:relative;width:20px;height:20px;border:1.5px solid currentColor;border-radius:6px}
+.ig::before{content:"";position:absolute;top:4px;left:4px;width:10px;height:10px;border:1.5px solid currentColor;border-radius:50%;box-sizing:border-box}
+.ig::after{content:"";position:absolute;top:2.5px;right:2.5px;width:2.5px;height:2.5px;background:currentColor;border-radius:50%}
+
+.socials{display:flex;gap:10px;flex-wrap:wrap}
+.filelinks{display:flex;gap:8px;flex-wrap:wrap}
+
+/* ---------- header ---------- */
+
+.hdr{
+  position:sticky;top:0;z-index:40;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:14px var(--gut);
+  background:rgba(250,250,250,.88);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--ink);
+}
+.hdr__mark{font:700 12px/1 var(--sans);letter-spacing:-0.12px;text-transform:uppercase;color:var(--ink);text-decoration:none}
+
+/* Home on desktop floats the header over the headshot plate. */
+.hdr--over{background:none;backdrop-filter:none;border-bottom:1px solid var(--ink)}
+
+/* ---------- menu overlay (1a full-screen ink / 1g index) ---------- */
+
+.menu{
+  position:fixed;inset:0;z-index:90;
+  background:var(--ink);color:var(--paper);
+  display:flex;flex-direction:column;justify-content:space-between;
+  padding:20px;
+  opacity:0;pointer-events:none;transform:translateY(-12px);
+  transition:opacity .45s var(--ease),transform .45s var(--ease);
+  overflow-y:auto;
+}
+.menu[data-open="true"]{opacity:1;pointer-events:auto;transform:none}
+.menu__top{display:flex;justify-content:space-between;align-items:center}
+.menu__mark{font:700 12px/1 var(--sans);letter-spacing:-0.12px;text-transform:uppercase}
+.menu__skills{display:none}
+.menu__nav{display:flex;flex-direction:column;gap:2px;padding:24px 0}
+.menu__nav a{
+  font:400 clamp(38px,12.3vw,56px)/1.02 var(--serif);
+  color:var(--paper);text-decoration:none;
+}
+.menu__nav a[aria-current="page"]{font-style:italic}
+.menu__num{display:none}
+.menu__foot{display:flex;flex-direction:column;gap:12px;border-top:1px solid var(--muted);padding-top:14px}
+
+/* ---------- hero ---------- */
+
+.hero{min-height:640px;background:var(--paper);display:flex;flex-direction:column}
+.hero__head{padding:20px var(--gut) 0}
+.hero__name{
+  margin:0;
+  font:400 clamp(64px,18.5vw,104px)/0.95 var(--display);
+  text-transform:uppercase;letter-spacing:-0.01em;color:var(--ink);
+}
+.hero__rule{
+  display:flex;justify-content:space-between;align-items:baseline;gap:16px;
+  border-top:1px solid var(--ink);margin-top:12px;padding-top:8px;
+}
+.hero__rule span:first-child{font:400 12px/1.5 var(--sans);letter-spacing:-0.12px;text-transform:uppercase}
+.hero__rule span:last-child{font:400 12px/1.5 var(--mono);color:var(--muted)}
+.hero__shot{flex:1;position:relative;overflow:hidden;margin-top:12px;min-height:280px}
+.hero__shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 16%}
+
+/* desktop parallax plate — hidden until 1024 */
+.plate{display:none}
+.bigname{display:none}
+
+/* ---------- ticker ---------- */
+
+.ticker{
+  background:var(--ink);
+  border-top:1px solid var(--muted);border-bottom:1px solid var(--muted);
+  overflow:hidden;padding:10px 0;
+}
+.ticker__track{display:flex;width:max-content;animation:tick 38s linear infinite}
+.ticker__row{
+  display:flex;gap:28px;flex:none;padding-right:28px;
+  font:400 clamp(20px,6.2vw,32px)/1 var(--serif);color:var(--paper);white-space:nowrap;
+}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ---------- section scaffold ---------- */
+
+.sec{padding:56px var(--gut) 40px}
+.sec--paper{background:var(--paper)}
+.sec--ink{background:var(--ink);color:var(--paper)}
+.sec--ruled{border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
+.sec--capped{border-bottom:1px solid var(--ink)}
+
+.sec__label{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:18px}
+.sec__label span:first-child{font:700 12px/1 var(--sans);text-transform:uppercase;color:var(--ink)}
+.sec__label span:last-child{font:400 12px/1 var(--mono);color:var(--muted)}
+.sec__title{
+  margin:0 0 20px;
+  font:400 clamp(48px,16.4vw,72px)/0.85 var(--display);
+  text-transform:uppercase;color:var(--ink);
+}
+
+/* Scoped to .js-reveal, which the script adds only once it can actually observe
+   these sections — so content is never left invisible if JS or the observer
+   fails. The script also drops the class if the observer never reports back. */
+.js-reveal [data-reveal]{opacity:0;transform:translateY(28px);transition:opacity .75s var(--ease),transform .75s var(--ease)}
+.js-reveal [data-reveal].in{opacity:1;transform:none}
+
+/* anchored sections on the home flow must clear the sticky header */
+main > section[id]{scroll-margin-top:76px}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* ---------- resume ---------- */
+
+.credits{
+  max-height:320px;overflow-y:auto;scrollbar-width:none;
+  border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);
+}
+.credits::-webkit-scrollbar{display:none}
+.credit{display:grid;grid-template-columns:1fr;gap:2px;padding:12px 0;border-bottom:1px solid var(--hair)}
+.credit:last-child{border-bottom:0}
+.credit__show{font:400 20px/1.2 var(--serif);color:var(--ink)}
+/* Phone merges role/venue and director onto one line, per 1a; the separator
+   comes from data-sep so "Training" can use an em dash. */
+.credit__lines{font:400 12px/1.5 var(--sans);text-transform:uppercase;color:var(--muted)}
+.credit__meta::after{content:" " attr(data-sep) " "}
+.credit--solo .credit__meta::after{content:""}
+
+.resume__actions{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}
+
+/* ---------- about ---------- */
+
+.about{padding:64px 24px}
+.about__eyebrow{margin:0 0 20px;font:400 12px/1.5 var(--sans);letter-spacing:-0.12px;text-transform:uppercase;opacity:.6;text-align:center}
+.about__lead{margin:0;font:400 clamp(25px,6.9vw,40px)/1.24 var(--serif);text-align:center;text-wrap:pretty}
+.about__body{margin:18px auto 0;max-width:34em;font:400 clamp(16px,4.4vw,21px)/1.55 var(--serif);opacity:.86;text-align:center;text-wrap:pretty}
+.about__stats{margin:24px 0 0;font:400 12px/1.5 var(--sans);letter-spacing:-0.12px;text-transform:uppercase;opacity:.7;text-align:center}
+
+/* ---------- gallery ---------- */
+
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px 12px}
+.tile{display:block;text-align:left;padding:0;background:none;border:0;cursor:pointer;color:inherit;font:inherit}
+.tile__frame{display:block;aspect-ratio:3/4;overflow:hidden;background:var(--hair)}
+.tile__frame img{width:100%;height:100%;object-fit:cover;display:block}
+.tile__name{display:block;margin-top:8px;font:400 clamp(16px,4.6vw,24px)/1.15 var(--serif);color:var(--ink)}
+.hint{margin:16px 0 0;font:400 11px/1.5 var(--mono);text-transform:uppercase;color:var(--muted)}
+
+/* ---------- production sheet ---------- */
+
+.sheet{
+  position:fixed;inset:0;z-index:95;
+  background:var(--ink);color:var(--paper);
+  display:flex;flex-direction:column;
+  opacity:0;pointer-events:none;transform:scale(.96);
+  transition:opacity .4s var(--ease),transform .5s var(--ease);
+}
+.sheet[data-open="true"]{opacity:1;pointer-events:auto;transform:none}
+.sheet__top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px var(--gut);border-bottom:1px solid var(--edge)}
+.sheet__title{font:400 clamp(22px,6.7vw,36px)/1.1 var(--serif)}
+.sheet__stage{position:relative;flex:1;min-height:0;overflow:hidden;touch-action:pan-y;cursor:grab}
+.sheet__stage:active{cursor:grabbing}
+.sheet__track{display:flex;height:100%;transition:transform .55s var(--ease)}
+.sheet__slide{flex:0 0 100%;height:100%;overflow:hidden;background:var(--ink)}
+.sheet__slide img{width:100%;height:100%;object-fit:cover;display:block}
+.sheet__foot{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;padding:16px var(--gut) 20px;flex-wrap:wrap}
+.sheet__role{font:400 clamp(18px,5.1vw,26px)/1.2 var(--serif)}
+.sheet__meta{display:block;font:400 12px/1.5 var(--sans);letter-spacing:-0.12px;text-transform:uppercase;opacity:.65}
+.sheet__nav{display:flex;align-items:center;gap:12px;margin-left:auto}
+.sheet__count{font:400 12px/1 var(--mono);opacity:.65}
+
+/* ---------- reels ---------- */
+
+.reels{display:flex;flex-direction:column;gap:12px}
+.reel{position:relative;aspect-ratio:16/9;overflow:hidden;background:var(--ink)}
+.reel__btn{position:absolute;inset:0;width:100%;height:100%;padding:0;border:0;background:none;cursor:pointer;display:block}
+.reel__btn img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.74)}
+.reel__bar{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:flex-end;gap:12px;padding:14px 16px}
+.reel__name{font:400 clamp(24px,7.7vw,44px)/1.05 var(--serif);color:var(--paper);text-align:left}
+.reel__play{
+  display:flex;align-items:center;gap:8px;flex:none;
+  font:400 12px/1 var(--sans);letter-spacing:-0.12px;text-transform:uppercase;
+  color:var(--paper);border:1px solid var(--paper);border-radius:12px;padding:8px 12px;
+}
+.reel iframe{position:absolute;inset:0;width:100%;height:100%;border:0;z-index:2}
+
+/* ---------- contact ---------- */
+
+/* z-index keeps it above the home page's sticky headshot plate, like .sec does */
+.contact{position:relative;z-index:10;padding:64px var(--gut) 24px;display:flex;flex-direction:column;gap:28px}
+.contact__eyebrow{font:400 12px/1.5 var(--sans);text-transform:uppercase;opacity:.6}
+.contact__title{margin:8px 0 0;font:400 clamp(56px,18.5vw,132px)/0.85 var(--serif);color:var(--paper)}
+.contact__band{border-top:1px solid var(--muted);padding-top:16px}
+/* 1a's contact block has no file buttons; 1g's does. */
+.contact__files{display:none}
+.contact__note{margin:0;font:400 11px/1.5 var(--sans);letter-spacing:-0.12px;text-transform:uppercase;opacity:.55}
+
+/* position/z-index keep it above the home page's sticky headshot plate */
+.foot{position:relative;z-index:10;background:var(--ink);color:var(--paper);padding:20px var(--gut);border-top:1px solid var(--muted)}
+.foot p{margin:0;font:400 11px/1.5 var(--sans);letter-spacing:-0.12px;text-transform:uppercase;opacity:.55}
+
+/* =====================================================================
+   Desktop — wireframe 1g
+   ===================================================================== */
+
+@media (min-width:1024px){
+  :root{--gut:64px}
+
+  .m-only{display:none}
+  .d-only{display:block}
+  .br-m{display:none}
+
+  .hdr{padding:20px 32px;border-bottom:1px solid var(--ink)}
+  .hdr--over{
+    background:none;backdrop-filter:none;border-bottom:0;
+    position:sticky;z-index:40;
+  }
+  .hdr--over .hdr__btn{background:rgba(250,250,250,.75)}
+
+  .icon{width:52px;height:52px}
+  .icon span{font-size:22px}
+  .ig{width:22px;height:22px}
+  .ig::before{top:4.5px;left:4.5px;width:11px;height:11px}
+  .ig::after{top:3px;right:3px}
+
+  /* menu becomes the 1g index */
+  .menu{padding:24px 32px 28px;justify-content:space-between}
+  .menu__mark::after{content:" — Index"}
+  .menu__body{display:grid;grid-template-columns:minmax(0,1fr) 520px;gap:64px;align-items:end}
+  .menu__skills{display:block;margin:0 0 8px;max-width:340px;font:400 20px/1.3 var(--serif);opacity:.75}
+  .menu__nav{gap:0;padding:0;border-bottom:1px solid var(--edge)}
+  .menu__nav a{
+    display:flex;align-items:baseline;justify-content:flex-end;gap:20px;
+    border-top:1px solid var(--edge);padding:10px 0;
+    font-size:56px;
+  }
+  .menu__num{display:inline;font:400 12px/1 var(--mono);color:var(--dim)}
+  .menu__foot{flex-direction:row;justify-content:space-between;align-items:flex-end;border-top:0;padding-top:0}
+
+  /* home hero → fixed plate + parallax name */
+  .hero{display:none}
+  .plate{
+    display:block;position:sticky;top:0;height:100vh;margin-bottom:-100vh;
+    z-index:0;background:var(--paper);overflow:hidden;
+  }
+  .plate img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%;filter:brightness(.86) contrast(1.04)}
+  .bigname{
+    display:flex;position:relative;z-index:10;height:95vh;
+    justify-content:center;align-items:center;pointer-events:none;
+    margin-top:-62px;padding-top:120px;
+  }
+  .bigname h1{
+    margin:0;will-change:transform;text-align:center;
+    mix-blend-mode:difference;opacity:.92;
+    font:400 clamp(88px,11.7vw,150px)/1 var(--display);
+    text-transform:uppercase;letter-spacing:0.02em;color:var(--paper);white-space:nowrap;
+  }
+  .ticker{display:none}
+
+  /* sections sit above the plate */
+  .sec{position:relative;z-index:10;padding:96px var(--gut)}
+  .sec--ink{padding:112px 200px}
+  .sec--ruled{border-top:1px solid var(--ink);border-bottom:0}
+
+  .sec__head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:28px}
+  .sec__head h2{margin:0;font:400 72px/0.9 var(--display);text-transform:uppercase;color:var(--ink)}
+  .sec__head span{font:400 12px/1 var(--mono);color:var(--muted)}
+
+  /* resume → sticky label + three columns */
+  .resume{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:64px;align-items:start}
+  .resume__aside{position:sticky;top:96px}
+  .resume__aside span{font:400 12px/1 var(--mono);color:var(--muted)}
+  .resume__aside h2{margin:10px 0 0;font:400 72px/0.9 var(--display);text-transform:uppercase;color:var(--ink)}
+  .credits{max-height:none;overflow:visible;border-bottom:0}
+  .credit{grid-template-columns:1fr 260px 220px;gap:16px;align-items:baseline;padding:18px 0}
+  .credit--solo{grid-template-columns:1fr minmax(0,480px)}
+  .credit__show{font-size:28px;line-height:1.15}
+  /* the wrapper dissolves so meta and director become real grid columns */
+  .credit__lines{display:contents}
+  .credit__meta{font:400 12px/1.5 var(--sans);text-transform:uppercase;color:var(--muted)}
+  .credit__meta::after{content:""}
+  .credit__dir{font:400 12px/1.5 var(--mono);color:var(--muted);text-align:right}
+  .resume__actions{margin-top:18px}
+
+  /* about */
+  .about__eyebrow{margin-bottom:24px}
+  .about__lead{max-width:22em;margin-left:auto;margin-right:auto}
+  .about__body{max-width:40em;margin-top:24px}
+  .about__stats{margin-top:28px}
+
+  /* gallery → three across, landscape crops */
+  .grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:24px 16px}
+  .tile__frame{aspect-ratio:3/2}
+  .tile__name{margin-top:10px}
+  .hint{margin-top:18px}
+
+  .sheet__top{padding:20px 32px}
+  /* 1g shows the whole frame rather than cropping it */
+  .sheet__slide img{object-fit:contain}
+  .sheet__foot{padding:24px 32px 28px;flex-wrap:nowrap}
+
+  .reels{gap:16px}
+  .reel__bar{padding:20px 24px}
+
+  .contact{
+    padding:96px var(--gut) 40px;
+    flex-direction:row;justify-content:space-between;align-items:flex-end;gap:48px;
+  }
+  .contact__side{display:flex;flex-direction:column;gap:16px;align-items:flex-end}
+  .contact__band{border-top:0;padding-top:0}
+  .contact__files{display:flex}
+  .foot{padding:20px 64px}
+}
+
+@media (min-width:1024px) and (max-width:1200px){
+  .menu__body{grid-template-columns:minmax(0,1fr) 420px;gap:40px}
+  .menu__nav a{font-size:44px}
+  .sec--ink{padding:112px 120px}
+  .credit{grid-template-columns:1fr 200px 180px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}
+  .ticker__track{animation:none}
+  [data-reveal]{opacity:1;transform:none}
+  .bigname h1{transform:none !important;opacity:.92 !important}
+}
