@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gallery — Isaac Hohl</title>
+<meta name="description" content="Production photography from West Side Story, Godspell, Witch, Company, Return to the Forbidden Planet and RENT.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="hdr">
+  <a class="hdr__mark" href="index.html">Isaac Hohl</a>
+  <button class="btn hdr__btn" id="menu-open" type="button" aria-expanded="false" aria-controls="menu">Menu</button>
+</header>
+
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Site menu" data-open="false" aria-hidden="true">
+  <div class="menu__top">
+    <span class="menu__mark">Isaac Hohl</span>
+    <button class="btn btn--light" type="button" data-menu-close>Close</button>
+  </div>
+  <div class="menu__body">
+    <p class="menu__skills">Acting · Movement · Vocal Performance · Contact Improvisation · Physical Theater · Aerial · Ballroom Dancing · Stage Combat</p>
+    <nav class="menu__nav" aria-label="Main">
+      <a href="index.html"><span class="menu__num">01</span><span>Home</span></a>
+      <a href="index.html#resume"><span class="menu__num">02</span><span>Resume</span></a>
+      <a href="index.html#about"><span class="menu__num">03</span><span>About</span></a>
+      <a href="index.html#gallery" aria-current="page"><span class="menu__num">04</span><span>Gallery</span></a>
+      <a href="index.html#reels"><span class="menu__num">05</span><span>Reels</span></a>
+      <a href="index.html#contact"><span class="menu__num">06</span><span>Contact</span></a>
+    </nav>
+  </div>
+  <div class="menu__foot">
+    <div class="socials">
+      <a class="icon icon--light" href="https://www.instagram.com/isaac_hohl?stkn=MWFkaDZ1cGtmZzBwYw==" target="_blank" rel="noopener" aria-label="Instagram"><span class="ig"></span></a>
+      <a class="icon icon--light" href="https://www.tiktok.com/@isaachohl?_r=1&amp;_t=ZP-99kt2brEHVP" target="_blank" rel="noopener" aria-label="TikTok"><span>&#9834;</span></a>
+      <a class="icon icon--light" href="mailto:hohl.isaac@gmail.com" aria-label="Email Isaac Hohl"><span>&#9993;</span></a>
+      <a class="icon icon--light" href="tel:+16785482481" aria-label="Call Isaac Hohl"><span>&#9742;</span></a>
+    </div>
+    <div class="filelinks">
+      <a class="btn btn--light btn--plain" href="img/resume.pdf" target="_blank" rel="noopener">Resume PDF</a>
+      <a class="btn btn--light btn--plain" href="img/headshot-full.jpg" download="Isaac Hohl headshot.jpg">Headshot JPG</a>
+    </div>
+  </div>
+</div>
+
+<main id="main">
+  <section class="sec sec--paper" data-reveal aria-labelledby="gallery-h">
+
+    <div class="m-only">
+      <div class="sec__label"><span>Gallery</span><span>03</span></div>
+      <h2 class="sec__title" id="gallery-h">On Stage</h2>
+    </div>
+    <div class="sec__head d-only">
+      <h2 id="gallery-h-d">Gallery</h2>
+      <span>03</span>
+    </div>
+
+    <div class="grid" id="gallery-grid">
+      <button class="tile" type="button" data-show="0">
+        <span class="tile__frame"><img loading="lazy" src="img/w/west-side-story.jpg" alt="Isaac Hohl as Action in West Side Story"></span>
+        <span class="tile__name">West Side Story</span>
+      </button>
+      <button class="tile" type="button" data-show="1">
+        <span class="tile__frame"><img loading="lazy" src="img/w/godspell.jpg" alt="Isaac Hohl as Judas in Godspell"></span>
+        <span class="tile__name">Godspell</span>
+      </button>
+      <button class="tile" type="button" data-show="2">
+        <span class="tile__frame"><img loading="lazy" src="img/w/witch.jpg" alt="Isaac Hohl as Scratch in Witch"></span>
+        <span class="tile__name">Witch</span>
+      </button>
+      <button class="tile" type="button" data-show="3">
+        <span class="tile__frame"><img loading="lazy" src="img/w/company.jpg" alt="Isaac Hohl as Harry in Company"></span>
+        <span class="tile__name">Company</span>
+      </button>
+      <button class="tile" type="button" data-show="4">
+        <span class="tile__frame"><img loading="lazy" src="img/w/forbidden-planet.jpg" alt="Isaac Hohl as Cookie the Cook in Return to the Forbidden Planet"></span>
+        <span class="tile__name">Return to the Forbidden Planet</span>
+      </button>
+      <button class="tile" type="button" data-show="5">
+        <span class="tile__frame"><img loading="lazy" src="img/w/rent.jpg" alt="Isaac Hohl as Benjamin Coffin III in RENT"></span>
+        <span class="tile__name">RENT</span>
+      </button>
+    </div>
+
+    <p class="hint m-only">Tap a production — it expands in place</p>
+    <p class="hint d-only">Click a production — it expands in place</p>
+
+  </section>
+</main>
+
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title" data-open="false" aria-hidden="true">
+  <div class="sheet__top">
+    <span class="sheet__title" id="sheet-title" data-sheet-title></span>
+    <button class="btn btn--light" type="button" data-sheet-close>Close</button>
+  </div>
+  <div class="sheet__stage" data-stage>
+    <div class="sheet__track" data-track></div>
+  </div>
+  <div class="sheet__foot">
+    <div>
+      <span class="sheet__role" data-sheet-role></span>
+      <span class="sheet__meta" data-sheet-meta></span>
+    </div>
+    <div class="sheet__nav">
+      <span class="sheet__count" data-sheet-count role="status" aria-live="polite"></span>
+      <button class="btn btn--light btn--plain" type="button" data-prev aria-label="Previous photo">&larr;</button>
+      <button class="btn btn--light btn--plain" type="button" data-next aria-label="Next photo">&rarr;</button>
+    </div>
+  </div>
+</div>
+
+<footer class="foot">
+  <p>Isaac Hohl — theatre · dance · aerial — available for booking</p>
+</footer>
+
+<script src="assets/js/site.js"></script>
+</body>
+</html>
