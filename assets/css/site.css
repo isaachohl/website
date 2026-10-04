@@ -270,7 +270,6 @@ html{scroll-behavior:smooth}
 .contact__band{border-top:1px solid var(--muted);padding-top:16px}
 /* 1a's contact block has no file buttons; 1g's does. */
 .contact__files{display:none}
-.contact__note{margin:0;font:400 11px/1.5 var(--sans);letter-spacing:-0.12px;text-transform:uppercase;opacity:.55}
 
 /* position/z-index keep it above the home page's sticky headshot plate */
 .foot{position:relative;z-index:10;background:var(--ink);color:var(--paper);padding:20px var(--gut);border-top:1px solid var(--muted)}
